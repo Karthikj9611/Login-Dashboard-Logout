@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Register</title>
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #43cea2, #185a9d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Glass Card */
+.register-container {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  width: 320px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  text-align: center;
+  color: #fff;
+}
+
+.register-container h2 {
+  margin-bottom: 20px;
+  font-weight: 600;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 12px 10px;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+  font-size: 14px;
+}
+
+.input-group input::placeholder {
+  color: #ddd;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Login Link */
+p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+a {
+  color: #ffe082;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive */
+@media(max-width: 400px){
+  .register-container {
+    width: 90%;
+    padding: 30px;
+  }
+}
+</style>
+
+</head>
+<body>
+
+<div class="register-container">
+  <h2>Create Account 🚀</h2>
+
+  <form action="/register" method="POST">
+    <div class="input-group">
+      <input type="text" name="username" placeholder="Username" required>
+    </div>
+
+    <div class="input-group">
+      <input type="password" name="password" placeholder="Password" required>
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <p>Already have an account? <a href="/">Login</a></p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  height: 100vh;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Card */
+.login-container {
+  background: rgba(255,255,255,0.1);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  width: 320px;
+  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  text-align: center;
+  color: #fff;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+/* Error box */
+.error-box {
+  display: none;
+  background: rgba(255, 75, 92, 0.2);
+  color: #ffccd5;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+/* Inputs */
+.input-group {
+  margin-bottom: 20px;
+}
+
+input {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: rgba(255,255,255,0.2);
+  color: #fff;
+}
+
+input::placeholder {
+  color: #ddd;
+}
+
+/* Button */
+button {
+  width: 100%;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(135deg, #ff7eb3, #ff758c);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* Link */
+a {
+  color: #ffd369;
+}
+</style>
+</head>
+
+<body>
+
+<div class="login-container">
+  <h2>Welcome Back 👋</h2>
+
+  <!-- Error UI -->
+  <div id="errorBox" class="error-box"></div>
+
+  <form id="loginForm">
+    <div class="input-group">
+      <input type="text" name="username" placeholder="Username" required>
+    </div>
+
+    <div class="input-group">
+      <input type="password" name="password" placeholder="Password" required>
+    </div>
+
+    <button type="submit">Login</button>
+  </form>
+
+  <p>New user? <a href="register.html">Create Account</a></p>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", async function(e) {
+  e.preventDefault();
+
+  const formData = new FormData(this);
+  const data = new URLSearchParams(formData);
+
+  const res = await fetch("/login", {
+    method: "POST",
+    body: data
+  });
+
+  const text = await res.text();
+
+  if (text.includes("❌")) {
+    const errorBox = document.getElementById("errorBox");
+    errorBox.style.display = "block";
+    errorBox.innerText = text;
+  } else {
+    window.location.href = "/dashboard";
+  }
+});
+</script>
+
+</body>
+</html>
