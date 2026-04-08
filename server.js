@@ -6,7 +6,7 @@ const bodyParser = require("body-parser");
 const path = require("path");
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // DB Connect
 mongoose.connect("mongodb://127.0.0.1:27017/loginDB")
