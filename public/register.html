@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register</title>
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
@@ -18,37 +17,52 @@
 
 body {
   height: 100vh;
-  background: linear-gradient(135deg, #43cea2, #185a9d);
+  background: linear-gradient(-45deg, #43cea2, #185a9d, #ff9a9e, #fad0c4);
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
+@keyframes gradientBG {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
 /* Glass Card */
 .register-container {
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(15px);
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(18px);
   padding: 40px;
   border-radius: 20px;
-  width: 320px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+  width: 340px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
   text-align: center;
   color: #fff;
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
 }
 
 .register-container h2 {
-  margin-bottom: 20px;
+  margin-bottom: 25px;
   font-weight: 600;
 }
 
-/* Inputs */
+/* Floating Inputs */
 .input-group {
-  margin-bottom: 20px;
+  position: relative;
+  margin-bottom: 22px;
 }
 
 .input-group input {
   width: 100%;
-  padding: 12px 10px;
+  padding: 14px 10px;
   border: none;
   outline: none;
   border-radius: 10px;
@@ -57,8 +71,32 @@ body {
   font-size: 14px;
 }
 
-.input-group input::placeholder {
+.input-group label {
+  position: absolute;
+  top: 50%;
+  left: 10px;
   color: #ddd;
+  font-size: 13px;
+  transform: translateY(-50%);
+  pointer-events: none;
+  transition: 0.3s;
+}
+
+.input-group input:focus + label,
+.input-group input:valid + label {
+  top: -8px;
+  font-size: 11px;
+  color: #ffe082;
+}
+
+/* Password toggle */
+.toggle-pass {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 14px;
 }
 
 /* Button */
@@ -77,10 +115,10 @@ button {
 
 button:hover {
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
 }
 
-/* Login Link */
+/* Link */
 p {
   margin-top: 15px;
   font-size: 14px;
@@ -112,12 +150,16 @@ a:hover {
   <h2>Create Account 🚀</h2>
 
   <form action="/register" method="POST">
+
     <div class="input-group">
-      <input type="text" name="username" placeholder="Username" required>
+      <input type="text" name="username" required>
+      <label>Username</label>
     </div>
 
     <div class="input-group">
-      <input type="password" name="password" placeholder="Password" required>
+      <input type="password" id="password" name="password" required>
+      <label>Password</label>
+      <span class="toggle-pass" onclick="togglePassword()">👁</span>
     </div>
 
     <button type="submit">Register</button>
@@ -125,6 +167,13 @@ a:hover {
 
   <p>Already have an account? <a href="/">Login</a></p>
 </div>
+
+<script>
+function togglePassword() {
+  const pass = document.getElementById("password");
+  pass.type = pass.type === "password" ? "text" : "password";
+}
+</script>
 
 </body>
 </html>
