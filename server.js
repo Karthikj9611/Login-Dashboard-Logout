@@ -48,7 +48,7 @@ app.post("/register", async (req, res) => {
   });
 
   await user.save();
-  res.send("✅ Registered! <a href='/'>Login</a>");
+res.redirect("/success.html");
 });
 
 // Login
