@@ -4,175 +4,61 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Register</title>
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
-}
-
-body {
-  height: 100vh;
-  background: linear-gradient(-45deg, #43cea2, #185a9d, #ff9a9e, #fad0c4);
-  background-size: 400% 400%;
-  animation: gradientBG 10s ease infinite;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-@keyframes gradientBG {
-  0% {background-position: 0% 50%;}
-  50% {background-position: 100% 50%;}
-  100% {background-position: 0% 50%;}
-}
-
-/* Glass Card */
-.register-container {
-  background: rgba(255, 255, 255, 0.12);
-  backdrop-filter: blur(18px);
-  padding: 40px;
-  border-radius: 20px;
-  width: 340px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-  text-align: center;
-  color: #fff;
-  animation: fadeIn 0.8s ease;
-}
-
-@keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
-}
-
-.register-container h2 {
-  margin-bottom: 25px;
-  font-weight: 600;
-}
-
-/* Floating Inputs */
-.input-group {
-  position: relative;
-  margin-bottom: 22px;
-}
-
-.input-group input {
-  width: 100%;
-  padding: 14px 10px;
-  border: none;
-  outline: none;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.2);
-  color: #fff;
-  font-size: 14px;
-}
-
-.input-group label {
-  position: absolute;
-  top: 50%;
-  left: 10px;
-  color: #ddd;
-  font-size: 13px;
-  transform: translateY(-50%);
-  pointer-events: none;
-  transition: 0.3s;
-}
-
-.input-group input:focus + label,
-.input-group input:valid + label {
-  top: -8px;
-  font-size: 11px;
-  color: #ffe082;
-}
-
-/* Password toggle */
-.toggle-pass {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* Button */
-button {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  border-radius: 10px;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-  color: #333;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-}
-
-/* Link */
-p {
-  margin-top: 15px;
-  font-size: 14px;
-}
-
-a {
-  color: #ffe082;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-/* Responsive */
-@media(max-width: 400px){
-  .register-container {
-    width: 90%;
-    padding: 30px;
-  }
-}
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Poppins',sans-serif; }
+body { height:100vh; background: linear-gradient(-45deg,#43cea2,#185a9d,#ff9a9e,#fad0c4); background-size:400% 400%; animation:gradientBG 10s ease infinite; display:flex; justify-content:center; align-items:center; }
+@keyframes gradientBG {0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+.register-container { background: rgba(255,255,255,0.12); backdrop-filter:blur(18px); padding:40px; border-radius:20px; width:340px; box-shadow:0 20px 40px rgba(0,0,0,0.4); text-align:center; color:#fff; }
+h2 { margin-bottom:25px; font-weight:600; }
+.input-group { position:relative; margin-bottom:22px; }
+.input-group input { width:100%; padding:14px 10px; border:none; outline:none; border-radius:10px; background: rgba(255,255,255,0.2); color:#fff; font-size:14px; }
+.input-group label { position:absolute; top:50%; left:10px; color:#ddd; font-size:13px; transform:translateY(-50%); pointer-events:none; transition:0.3s; }
+.input-group input:focus + label, .input-group input:valid + label { top:-8px; font-size:11px; color:#ffe082; }
+.toggle-pass { position:absolute; right:10px; top:50%; transform:translateY(-50%); cursor:pointer; font-size:14px; }
+button { width:100%; padding:12px; border:none; border-radius:10px; background:linear-gradient(135deg,#ff9a9e,#fad0c4); color:#333; font-size:16px; font-weight:600; cursor:pointer; }
+button:hover { transform:scale(1.05); box-shadow:0 8px 20px rgba(0,0,0,0.4); }
+p { margin-top:15px; font-size:14px; }
+a { color:#ffe082; text-decoration:none; font-weight:500; }
+a:hover { text-decoration:underline; }
+.error-box { display:none; background: rgba(255,75,92,0.2); color:#ffccd5; padding:10px; border-radius:8px; margin-bottom:15px; font-size:14px; text-align:left; }
+@media(max-width:400px){.register-container{width:90%;padding:30px}}
 </style>
-
 </head>
 <body>
 
 <div class="register-container">
   <h2>Create Account 🚀</h2>
-
-  <form action="/register" method="POST">
-
-    <div class="input-group">
-      <input type="text" name="username" required>
-      <label>Username</label>
-    </div>
-
-    <div class="input-group">
-      <input type="password" id="password" name="password" required>
-      <label>Password</label>
-      <span class="toggle-pass" onclick="togglePassword()">👁</span>
-    </div>
-
+  <div id="errorBox" class="error-box"></div>
+  <form id="registerForm">
+    <div class="input-group"><input type="text" name="username" required><label>Username</label></div>
+    <div class="input-group"><input type="tel" name="phone" pattern="[0-9]{10}" required><label>Phone Number</label></div>
+    <div class="input-group"><input type="password" id="password" name="password" required><label>Password</label><span class="toggle-pass" onclick="togglePassword()">👁</span></div>
     <button type="submit">Register</button>
   </form>
-
   <p>Already have an account? <a href="/">Login</a></p>
 </div>
 
 <script>
+const errorBox = document.getElementById("errorBox");
+
 function togglePassword() {
   const pass = document.getElementById("password");
-  pass.type = pass.type === "password" ? "text" : "password";
+  pass.type = pass.type==="password"?"text":"password";
 }
+
+document.getElementById("registerForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const data = new URLSearchParams(new FormData(e.target));
+  const res = await fetch("/register", { method:"POST", body:data });
+  const text = await res.text();
+
+  if(text.includes("❌")){
+    errorBox.style.display="block"; errorBox.innerText=text;
+  } else {
+    window.location.href="/success.html";
+  }
+});
 </script>
 
 </body>
