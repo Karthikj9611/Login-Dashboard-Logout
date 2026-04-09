@@ -77,7 +77,7 @@ body {
 
 .header-actions {
   display: flex;
-  gap: 1.8rem;
+  gap: 0.8rem;
   align-items: center;
 }
 
@@ -838,8 +838,7 @@ body {
       <h1><i class="fas fa-tshirt"></i>KR Threads</h1>
       <p>Premium Shirts & Pants</p>
     </div>
-		 <!-- Simple Logout Link -->
-  <a style="color:#f97316;" href="/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+
     <div class="header-actions">
       <div class="search-wrapper">
         <i class="fas fa-search"></i>
@@ -850,6 +849,11 @@ body {
         <span class="cart-count" id="cartCountBadge">0</span>
       </div>
       <div class="shop-info-btn" id="shopInfoBtn"><i class="fas fa-store"></i></div>
+	  
+			  <!-- Logout Button Styled Like a Div -->
+		<div style="color:#f97316;font-size:1.4rem;" class="logout-btn" id="logoutBtn" onclick="location.href='/logout'">
+		  <i class="fas fa-sign-out-alt"></i>
+		</div>
 	  
     </div>
   </div>
