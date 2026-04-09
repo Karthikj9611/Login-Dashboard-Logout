@@ -1063,11 +1063,8 @@ body {
   init();
   
   document.getElementById("logoutBtn").addEventListener("click", () => {
-  // Example: clear user session/localStorage
   localStorage.removeItem("userLoggedIn"); // if you use localStorage
-  alert("Logged out successfully!");
-  // Redirect to login page
-  window.location.href = "login.html"; // change to your login page
+  window.location.href = "index.html"; // change to your login page
 });
 </script>
 </body>
