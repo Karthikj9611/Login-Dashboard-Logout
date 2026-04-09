@@ -99,6 +99,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
+
 // ------------------ Login ------------------
 app.post("/login", async (req, res) => {
   try {
@@ -106,18 +107,32 @@ app.post("/login", async (req, res) => {
 
     const { username, phone, password } = req.body;
 
-    const user = await User.findOne({ username: username.trim(), phone: phone.toString().trim() });
-    console.log("🔹 User Found:", user);
+    const trimmedUsername = username.trim();
+    const trimmedPhone = phone.toString().trim();
 
-    if (!user) return res.send("❌ Username or phone not found");
+    // 1️⃣ Check if username exists
+    const userByUsername = await User.findOne({ username: trimmedUsername });
+    if (!userByUsername) {
+      console.log("⚠️ Username not found:", trimmedUsername);
+      return res.send("❌ Username not found");
+    }
 
-    const isMatch = await bcrypt.compare(password, user.password);
+    // 2️⃣ Check if phone matches the user
+    if (userByUsername.phone !== trimmedPhone) {
+      console.log("⚠️ Phone number does not match for user:", trimmedUsername);
+      return res.send("❌ Phone number does not match");
+    }
+
+    // 3️⃣ Compare password
+    const isMatch = await bcrypt.compare(password, userByUsername.password);
     console.log("🔹 Password Match:", isMatch);
 
     if (!isMatch) return res.send("❌ Wrong password");
 
-    req.session.user = user.username;
+    // 4️⃣ Success
+    req.session.user = userByUsername.username;
     res.send("✅ Login successful");
+
   } catch (err) {
     console.log("❌ Error in /login:", err);
     res.send("❌ Error logging in");
